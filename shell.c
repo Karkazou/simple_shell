@@ -1,5 +1,22 @@
 #include "main.h"
 
+
+/**
+ * env - prints the environment variables
+ */
+
+void envar(void)
+{
+
+	char **env = environ;
+
+	while (*env != NULL)
+	{
+		printf("%s\n", *env);
+		env++;
+	}
+}
+
 ssize_t _write(char **line, size_t *len)
 {
     ssize_t read = 0;
@@ -47,6 +64,12 @@ void shell(void)
 			continue;
 		if (_input(str))
 			break;
+        if (strcmp(str, "env") == 0)
+		{
+			envar();
+			free(str);
+			exit(EXIT_SUCCESS);
+		}
 		
 		_strtok(str, arg);
 		_path(arg[0], arg1, &commend);
