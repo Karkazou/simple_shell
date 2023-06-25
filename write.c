@@ -6,13 +6,13 @@
 
 void envar(void)
 {
-char **env = environ;
+	char **env = environ;
 
-while (*env != NULL)
-{
-printf("%s\n", *env);
-env++;
-}
+	while (*env != NULL)
+	{
+		printf("%s\n", *env);
+		env++;
+	}
 }
 
 /**
@@ -25,21 +25,21 @@ env++;
 
 ssize_t _write(char **line, size_t *len)
 {
-ssize_t read = 0;
+	ssize_t read = 0;
 
-if (isatty(STDIN_FILENO))
-{
-write(1, "($) ", 4);
-}
-read = getline(line, len, stdin);
-if (read == -1)
-{
-if (!isatty(STDIN_FILENO))
-{
-return (-1);
-}
-free(line);
-exit(EXIT_FAILURE);
-}
-return (read);
+	if (isatty(STDIN_FILENO))
+	{
+		write(1, "($) ", 4);
+	}
+	read = getline(line, len, stdin);
+	if (read == -1)
+	{
+		if (!isatty(STDIN_FILENO))
+		{
+			return (-1);
+		}
+		free(line);
+		exit(EXIT_FAILURE);
+	}
+	return (read);
 }
