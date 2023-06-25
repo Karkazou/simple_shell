@@ -10,18 +10,18 @@
 
 int bintest(char *str)
 {
-    char *path = "/bin/";
+	char *path = "/bin/";
 
-    while (*path != '\0')
-    {
-        if (*path != *str)
-        {
-            return (0);
-        }
-        path = path + 1;
-        str = str + 1;
-    }
-    return (1);
+	while (*path != '\0')
+	{
+		if (*path != *str)
+		{
+			return (0);
+		}
+		path = path + 1;
+		str = str + 1;
+	}
+	return (1);
 }
 
 /**
@@ -35,33 +35,33 @@ int bintest(char *str)
 
 void _path(char *str, char *path, char **commend)
 {
-    int len;
+	int len;
 
-    if (bintest(str))
-    {
-        len = 1 + strlen(str);
-        *commend = (char *)malloc(sizeof(char) * len);
-        strcpy(*commend, str);
-    }
-    else
-    {
-        switch (str[0])
-        {
-        case '.':
-        case '/':
-            len = 1 + strlen(str);
-            *commend = (char *)malloc(sizeof(char) * len);
-            strcpy(*commend, str);
-            break;
+	if (bintest(str))
+	{
+		len = 1 + strlen(str);
+		*commend = (char *)malloc(sizeof(char) * len);
+		strcpy(*commend, str);
+	}
+	else
+	{
+		switch (str[0])
+		{
+			case '.':
+			case '/':
+				len = 1 + strlen(str);
+				*commend = (char *)malloc(sizeof(char) * len);
+				strcpy(*commend, str);
+				break;
 
-        default:
-            len = strlen(path) + 2 + strlen(str);
-            *commend = (char *)malloc(sizeof(char) * len);
+			default:
+				len = strlen(path) + 2 + strlen(str);
+				*commend = (char *)malloc(sizeof(char) * len);
 
-            strcpy(*commend, path);
-            strcat(*commend, str);
+				strcpy(*commend, path);
+				strcat(*commend, str);
 
-            break;
-        }
-    }
+				break;
+		}
+	}
 }
