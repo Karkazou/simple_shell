@@ -43,6 +43,7 @@ void shell(void)
 		{
 			envar();
 			free(str);
+			free(commend);
 			exit(EXIT_SUCCESS);
 		}
 
@@ -52,4 +53,5 @@ void shell(void)
 		_path(arg[0], arg1, &commend);
 		status_exit = run(arg, commend, str);
 	}
+	free(str);
 }
